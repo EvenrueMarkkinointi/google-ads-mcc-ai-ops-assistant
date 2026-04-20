@@ -1,0 +1,19 @@
+{
+  "name": "google-ads-mcc-ai-ops-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Google Ads MCC health checks and weekly AI reporting service.",
+  "scripts": {
+    "start": "node src/server.js",
+    "cli": "node src/cli.js",
+    "test": "node scripts/run-tests.js",
+    "check": "node scripts/run-tests.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "pg": "^8.16.0"
+  }
+}
