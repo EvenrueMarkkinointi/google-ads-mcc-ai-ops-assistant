@@ -1,10 +1,10 @@
 export class ControlPanelService {
-  constructor({ sheetsClient }) {
-    this.sheetsClient = sheetsClient;
+  constructor({ controlPanelClient }) {
+    this.controlPanelClient = controlPanelClient;
   }
 
   async getControlPanel() {
-    const panel = await this.sheetsClient.readControlPanel();
+    const panel = await this.controlPanelClient.readControlPanel();
     return {
       accounts: panel.accounts.filter((account) => account.active),
       checklist: panel.checklist.filter((item) => item.enabled),

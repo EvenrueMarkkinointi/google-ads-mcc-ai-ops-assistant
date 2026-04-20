@@ -1,0 +1,63 @@
+{
+  "accounts": [
+    {
+      "customerId": "1234567890",
+      "accountName": "Example Account",
+      "active": true,
+      "ownerEmail": "account.manager@example.com",
+      "timezone": "Europe/Helsinki",
+      "currency": "EUR",
+      "notes": "Replace this with a real Google Ads customer ID from the MCC."
+    }
+  ],
+  "checklist": [
+    {
+      "checkId": "budget-pacing",
+      "section": "Budget",
+      "question": "Is budget pacing aligned with target monthly spend?",
+      "instruction": "Compare the last 7 days against the planned spend trajectory and flag underspend or overspend.",
+      "severity": "warn",
+      "appliesTo": "all",
+      "enabled": true
+    },
+    {
+      "checkId": "search-terms",
+      "section": "Traffic Quality",
+      "question": "Are search term patterns still relevant?",
+      "instruction": "Highlight wasteful queries, brand leakage, and new negative keyword candidates.",
+      "severity": "info",
+      "appliesTo": "all",
+      "enabled": true
+    }
+  ],
+  "recipients": [
+    {
+      "reportType": "daily",
+      "recipientEmail": "account.manager@example.com",
+      "recipientName": "Account Manager",
+      "enabled": true
+    },
+    {
+      "reportType": "weekly",
+      "recipientEmail": "account.manager@example.com",
+      "recipientName": "Account Manager",
+      "enabled": true
+    }
+  ],
+  "thresholds": [
+    {
+      "metric": "costMicros",
+      "comparisonWindow": "baseline_7d",
+      "warnPct": 30,
+      "alertPct": 60,
+      "enabled": true
+    },
+    {
+      "metric": "conversions",
+      "comparisonWindow": "baseline_7d",
+      "warnPct": 25,
+      "alertPct": 50,
+      "enabled": true
+    }
+  ]
+}

@@ -6,7 +6,7 @@ Dependency-light Node service for daily Google Ads MCC health checks and weekly 
 
 - HTTP API for scheduled jobs and report retrieval
 - CLI for ad hoc runs from Claude Code or a terminal
-- Google Sheets control panel parsing
+- GitHub-managed control panel file parsing
 - Google Ads data collection adapters
 - Deterministic health checks
 - OpenAI weekly analysis provider using structured JSON
@@ -18,34 +18,22 @@ Dependency-light Node service for daily Google Ads MCC health checks and weekly 
 ## Quick start
 
 1. Copy `.env.example` to `.env` and fill the required secrets.
-2. Install dependencies with `npm install`.
+2. Install dependencies with `npm.cmd install`.
 3. Run tests with `node scripts/run-tests.js`.
 4. Start the API with `node src/server.js`.
 5. Run manual jobs with `node src/cli.js list_accounts` or `node src/cli.js run_daily_health_check`.
 
-## Control panel spreadsheet
+## Control panel file
 
-Create one Google Sheet with the tabs below.
+Edit `config/control-panel.json`. This file is intended to live in GitHub so config changes are versioned with the codebase.
 
-### `Accounts`
+Expected top-level keys:
+- `accounts`
+- `checklist`
+- `recipients`
+- `thresholds`
 
-| customer_id | account_name | active | owner_email | timezone | currency | notes |
-| --- | --- | --- | --- | --- | --- | --- |
-
-### `Checklist`
-
-| check_id | section | question | instruction | severity | applies_to | enabled |
-| --- | --- | --- | --- | --- | --- | --- |
-
-### `Recipients`
-
-| report_type | recipient_email | recipient_name | enabled |
-| --- | --- | --- | --- |
-
-### `Thresholds`
-
-| metric | comparison_window | warn_pct | alert_pct | enabled |
-| --- | --- | --- | --- | --- |
+The bundled example file shows the expected field names and structure.
 
 ## HTTP endpoints
 
@@ -70,4 +58,5 @@ Create one Google Sheet with the tabs below.
   - daily: `POST /jobs/daily-health-check` at `07:00 Europe/Helsinki`
   - weekly: `POST /jobs/weekly-review` at `08:00 Europe/Helsinki` every Monday
 - Put secrets in Secret Manager and expose them as env vars to Cloud Run.
+- Keep `config/control-panel.json` in GitHub and redeploy when config changes, or point `CONTROL_PANEL_PATH` at another mounted JSON file if you prefer runtime-managed config.
 - Use `STORAGE_MODE=postgres` and `POSTGRES_URL` for Cloud SQL Postgres.

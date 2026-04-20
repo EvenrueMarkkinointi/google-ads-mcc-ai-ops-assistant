@@ -3,7 +3,7 @@ import { ControlPanelService } from "../src/services/controlPanelService.js";
 
 async function testControlPanelFiltering() {
   const service = new ControlPanelService({
-    sheetsClient: {
+    controlPanelClient: {
       async readControlPanel() {
         return {
           accounts: [

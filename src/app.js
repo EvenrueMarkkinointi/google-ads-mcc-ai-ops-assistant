@@ -1,6 +1,6 @@
 import { loadConfig } from "./config.js";
 import { GoogleServiceAccountAuth } from "./lib/googleAuth.js";
-import { GoogleSheetsControlPanelClient } from "./collectors/googleSheetsClient.js";
+import { GitHubFileControlPanelClient } from "./collectors/githubFileControlPanelClient.js";
 import { GoogleAdsCollector } from "./collectors/googleAdsClient.js";
 import { ResendEmailClient } from "./collectors/resendClient.js";
 import { OpenAiWeeklyAnalysisProvider } from "./reporting/openaiProvider.js";
@@ -16,12 +16,11 @@ export function createApp(env = process.env) {
     privateKey: config.googleServiceAccountPrivateKey
   });
 
-  const sheetsClient = new GoogleSheetsControlPanelClient({
-    auth,
-    spreadsheetId: config.googleSheetsSpreadsheetId
+  const controlPanelClient = new GitHubFileControlPanelClient({
+    controlPanelPath: config.controlPanelPath
   });
 
-  const controlPanelService = new ControlPanelService({ sheetsClient });
+  const controlPanelService = new ControlPanelService({ controlPanelClient });
   const googleAdsCollector = new GoogleAdsCollector({
     auth,
     developerToken: config.googleAdsDeveloperToken,
