@@ -1,5 +1,5 @@
 import { loadConfig } from "./config.js";
-import { GoogleServiceAccountAuth } from "./lib/googleAuth.js";
+import { GoogleOAuthRefreshTokenAuth } from "./lib/googleAuth.js";
 import { GitHubFileControlPanelClient } from "./collectors/githubFileControlPanelClient.js";
 import { GoogleAdsCollector } from "./collectors/googleAdsClient.js";
 import { ResendEmailClient } from "./collectors/resendClient.js";
@@ -8,12 +8,15 @@ import { createRepository } from "./storage/repository.js";
 import { ControlPanelService } from "./services/controlPanelService.js";
 import { JobService } from "./services/jobs.js";
 import { MockAnalysisProvider, MockEmailClient } from "./services/mockImplementations.js";
+import { loadEnvFile } from "./lib/loadEnv.js";
 
 export function createApp(env = process.env) {
+  loadEnvFile();
   const config = loadConfig(env);
-  const auth = new GoogleServiceAccountAuth({
-    clientEmail: config.googleServiceAccountEmail,
-    privateKey: config.googleServiceAccountPrivateKey
+  const auth = new GoogleOAuthRefreshTokenAuth({
+    clientId: config.googleOauthClientId,
+    clientSecret: config.googleOauthClientSecret,
+    refreshToken: config.googleOauthRefreshToken
   });
 
   const controlPanelClient = new GitHubFileControlPanelClient({

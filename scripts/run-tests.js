@@ -1,13 +1,17 @@
 import { run as runControlPanelTests } from "../tests/controlPanelService.test.js";
 import { run as runGitHubFileControlPanelTests } from "../tests/githubFileControlPanelClient.test.js";
+import { run as runGoogleAuthTests } from "../tests/googleAuth.test.js";
 import { run as runHealthTests } from "../tests/healthChecks.test.js";
+import { run as runLoadEnvTests } from "../tests/loadEnv.test.js";
 import { run as runOpenAiTests } from "../tests/openaiProvider.test.js";
 import { run as runRendererTests } from "../tests/renderers.test.js";
 
 const tests = [
   ["controlPanelService", runControlPanelTests],
   ["githubFileControlPanelClient", runGitHubFileControlPanelTests],
+  ["googleAuth", runGoogleAuthTests],
   ["healthChecks", runHealthTests],
+  ["loadEnv", runLoadEnvTests],
   ["openaiProvider", runOpenAiTests],
   ["renderers", runRendererTests]
 ];

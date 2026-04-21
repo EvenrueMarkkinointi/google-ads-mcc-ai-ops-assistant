@@ -23,6 +23,24 @@ Dependency-light Node service for daily Google Ads MCC health checks and weekly 
 4. Start the API with `node src/server.js`.
 5. Run manual jobs with `node src/cli.js list_accounts` or `node src/cli.js run_daily_health_check`.
 
+## Environment variables
+
+The app loads a local `.env` file from the project root automatically for local development.
+
+Google Ads authentication now uses OAuth refresh-token credentials:
+- `GOOGLE_ADS_DEVELOPER_TOKEN`
+- `GOOGLE_ADS_LOGIN_CUSTOMER_ID`
+- `GOOGLE_OAUTH_CLIENT_ID`
+- `GOOGLE_OAUTH_CLIENT_SECRET`
+- `GOOGLE_OAUTH_REFRESH_TOKEN`
+
+Other main values:
+- `OPENAI_API_KEY`
+- `RESEND_API_KEY`
+- `EMAIL_FROM`
+- `POSTGRES_URL`
+- `CONTROL_PANEL_PATH`
+
 ## Control panel file
 
 Edit `config/control-panel.json`. This file is intended to live in GitHub so config changes are versioned with the codebase.
