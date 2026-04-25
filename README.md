@@ -19,9 +19,10 @@ Dependency-light Node service for daily Google Ads MCC health checks and weekly 
 
 1. Copy `.env.example` to `.env` and fill the required secrets.
 2. Install dependencies with `npm.cmd install`.
-3. Run tests with `node scripts/run-tests.js`.
-4. Start the API with `node src/server.js`.
-5. Run manual jobs with `node src/cli.js list_accounts` or `node src/cli.js run_daily_health_check`.
+3. Run unit tests with `node scripts/run-tests.js`.
+4. Run a local smoke test with `npm run smoke` (starts server, checks `/health`, and triggers `/jobs/daily-health-check`).
+5. Start the API with `node src/server.js`.
+6. Run manual jobs with `node src/cli.js list_accounts` or `node src/cli.js run_daily_health_check`.
 
 ## Environment variables
 

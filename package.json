@@ -8,7 +8,8 @@
     "start": "node src/server.js",
     "cli": "node src/cli.js",
     "test": "node scripts/run-tests.js",
-    "check": "node scripts/run-tests.js"
+    "check": "node scripts/run-tests.js",
+    "smoke": "node scripts/smoke-test.js"
   },
   "engines": {
     "node": ">=22.0.0"
