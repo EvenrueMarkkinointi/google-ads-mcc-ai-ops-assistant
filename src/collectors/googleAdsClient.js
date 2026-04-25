@@ -42,12 +42,14 @@ export class GoogleAdsCollector {
 
   async search(customerId, query) {
     const url = `https://googleads.googleapis.com/${ADS_API_VERSION}/customers/${customerId}/googleAds:searchStream`;
+    const headers = {
+      "developer-token": this.developerToken,
+      ...(this.loginCustomerId ? { "login-customer-id": this.loginCustomerId } : {})
+    };
+
     const rows = await fetchGoogleJson(this.auth, ADS_SCOPE, url, {
       method: "POST",
-      headers: {
-        "developer-token": this.developerToken,
-        "login-customer-id": this.loginCustomerId
-      },
+      headers,
       body: JSON.stringify({ query })
     });
 
